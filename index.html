@@ -1,0 +1,2499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Of Colour — Blueprints of You</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     OF COLOUR WEBSITE — BLUEPRINTS OF YOU NGO
+     ============================================================
+     EASY EDITING GUIDE:
+     - COLOURS: Search "BRAND COLOURS" to change the colour palette
+     - CATEGORIES: Search "SERVICE CATEGORIES" to add/remove categories
+     - LOGO TEXT: Search "Of Colour" to change the brand name
+     - ABOUT TEXT: Search "ABOUT SECTION CONTENT" to edit about page
+     - ADMIN EMAIL: Search "ADMIN CONFIG" to change admin credentials
+     - FONTS: Change Google Fonts link above + font-family below
+     ============================================================ -->
+
+<style>
+  /* ============================
+     BRAND COLOURS — edit here
+     ============================ */
+  :root {
+    --brand-rust:    #C8472A;   /* Primary: deep terracotta/rust */
+    --brand-gold:    #D4902B;   /* Secondary: warm gold/saffron */
+    --brand-earth:   #8B5E3C;   /* Tertiary: rich earth brown */
+    --brand-cream:   #F7F0E6;   /* Background: warm cream */
+    --brand-dark:    #1E1208;   /* Text: near-black */
+    --brand-green:   #3A6B3A;   /* Accent: deep African green */
+    --brand-pattern: #E8D5B7;   /* Pattern: light sand */
+    --brand-white:   #FFFFFF;
+    --brand-gray:    #6B6560;
+    --brand-light:   #FAF7F2;
+    --radius-sm:     6px;
+    --radius-md:     12px;
+    --radius-lg:     20px;
+    --shadow-sm:     0 2px 8px rgba(30,18,8,0.10);
+    --shadow-md:     0 4px 20px rgba(30,18,8,0.15);
+    --shadow-lg:     0 8px 40px rgba(30,18,8,0.20);
+    --transition:    all 0.25s ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--brand-cream);
+    color: var(--brand-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
+
+  /* ============================
+     AFRICAN GEOMETRIC PATTERN
+     (SVG background helper)
+     ============================ */
+  .pattern-bg {
+    background-color: var(--brand-rust);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23D4902B' stroke-width='1.5' opacity='0.3'/%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%23D4902B' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E");
+  }
+
+  .kente-stripe {
+    height: 6px;
+    background: linear-gradient(90deg, var(--brand-rust) 0%, var(--brand-gold) 25%, var(--brand-green) 50%, var(--brand-earth) 75%, var(--brand-rust) 100%);
+  }
+
+  /* ============================
+     NAVIGATION
+     ============================ */
+  nav {
+    background: var(--brand-dark);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: 64px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--brand-cream);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .nav-logo span.accent { color: var(--brand-gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  .nav-links a, .nav-links button {
+    color: var(--brand-pattern);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .nav-links a:hover, .nav-links button:hover {
+    background: rgba(212,144,43,0.2);
+    color: var(--brand-gold);
+  }
+
+  .btn-nav-cta {
+    background: var(--brand-rust) !important;
+    color: var(--brand-cream) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.4rem 1rem !important;
+  }
+
+  .btn-nav-cta:hover {
+    background: var(--brand-gold) !important;
+    color: var(--brand-dark) !important;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    width: 22px;
+    height: 2px;
+    background: var(--brand-cream);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  @media (max-width: 700px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--brand-dark);
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0.25rem;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a, .nav-links button { width: 100%; text-align: left; }
+  }
+
+  /* ============================
+     PAGE SYSTEM
+     ============================ */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ============================
+     BUTTONS
+     ============================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+    border: none;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary {
+    background: var(--brand-rust);
+    color: var(--brand-cream);
+  }
+  .btn-primary:hover { background: #a8351a; }
+
+  .btn-gold {
+    background: var(--brand-gold);
+    color: var(--brand-dark);
+  }
+  .btn-gold:hover { background: #b8781e; color: var(--brand-cream); }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--brand-rust);
+    color: var(--brand-rust);
+  }
+  .btn-outline:hover { background: var(--brand-rust); color: var(--brand-cream); }
+
+  .btn-green {
+    background: var(--brand-green);
+    color: var(--brand-cream);
+  }
+  .btn-green:hover { background: #2a5a2a; }
+
+  .btn-sm { padding: 0.4rem 1rem; font-size: 0.82rem; }
+  .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
+
+  /* ============================
+     FORMS
+     ============================ */
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand-earth);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 2px solid var(--brand-pattern);
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background: var(--brand-white);
+    color: var(--brand-dark);
+    transition: var(--transition);
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--brand-rust);
+    box-shadow: 0 0 0 3px rgba(200,71,42,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* ============================
+     ALERTS / NOTIFICATIONS
+     ============================ */
+  .alert {
+    padding: 0.85rem 1.2rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .alert-success { background: #e8f5e9; border-left: 4px solid var(--brand-green); color: #2a5a2a; }
+  .alert-error { background: #fdecea; border-left: 4px solid #c0392b; color: #7b1a1a; }
+  .alert-info { background: #fff8e1; border-left: 4px solid var(--brand-gold); color: #7a5500; }
+
+  /* ============================
+     STAR RATING
+     ============================ */
+  .stars-display { display: inline-flex; gap: 2px; }
+  .stars-display svg { width: 16px; height: 16px; }
+  .star-filled { color: var(--brand-gold); }
+  .star-empty { color: #ccc; }
+
+  .stars-input { display: flex; gap: 4px; margin: 0.3rem 0; }
+  .stars-input label {
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #ddd;
+    transition: color 0.15s;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+  .stars-input input[type=radio] { display: none; }
+  .stars-input label:hover,
+  .stars-input label:hover ~ label,
+  .stars-input input:checked ~ label { color: var(--brand-gold); }
+  .stars-input { flex-direction: row-reverse; }
+  .stars-input label:hover,
+  .stars-input label:hover ~ label { color: var(--brand-gold); }
+
+  /* ============================
+     MODAL
+     ============================ */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30,18,8,0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--brand-white);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--brand-cream);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-gray);
+    transition: var(--transition);
+  }
+  .modal-close:hover { background: var(--brand-rust); color: white; }
+  .modal h2 { font-family: 'Playfair Display', serif; color: var(--brand-rust); margin-bottom: 1.5rem; }
+
+  /* ============================
+     CARD STYLES
+     ============================ */
+  .card {
+    background: var(--brand-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+  /* ============================
+     BADGE / TAG
+     ============================ */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-rust { background: rgba(200,71,42,0.12); color: var(--brand-rust); }
+  .badge-gold { background: rgba(212,144,43,0.15); color: #8B5E00; }
+  .badge-green { background: rgba(58,107,58,0.12); color: var(--brand-green); }
+  .badge-pending { background: #fff8e1; color: #7a5500; }
+  .badge-approved { background: #e8f5e9; color: #2a5a2a; }
+
+  /* ============================
+     SECTION LAYOUTS
+     ============================ */
+  .section {
+    padding: 4rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    color: var(--brand-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--brand-gray);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+  }
+
+  .divider-adinkra {
+    width: 60px;
+    height: 4px;
+    background: var(--brand-gold);
+    border-radius: 2px;
+    margin: 0.75rem 0 1.5rem;
+  }
+
+  /* ============================
+     CAROUSEL
+     ============================ */
+  .carousel-wrap { position: relative; overflow: hidden; border-radius: var(--radius-md); }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+  .carousel-track img {
+    flex-shrink: 0;
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    margin-right: 8px;
+    border: 2px solid transparent;
+    transition: var(--transition);
+  }
+  .carousel-track img:hover { border-color: var(--brand-gold); transform: scale(1.03); }
+
+  .carousel-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    justify-content: flex-end;
+  }
+  .carousel-nav button {
+    background: var(--brand-earth);
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+  }
+  .carousel-nav button:hover { background: var(--brand-rust); }
+
+  /* ============================
+     IMAGE LIGHTBOX
+     ============================ */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: var(--radius-md); }
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ============================
+     HERO SECTION
+     ============================ */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 2rem;
+  }
+
+  .hero-kicker {
+    background: rgba(200,71,42,0.12);
+    color: var(--brand-rust);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: var(--brand-dark);
+    max-width: 700px;
+  }
+
+  .hero h1 .accent { color: var(--brand-rust); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--brand-gray);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .hero-pattern {
+    position: absolute;
+    right: 0;
+    top: 64px;
+    bottom: 0;
+    width: 45%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='none' stroke='%23C8472A' stroke-width='1' opacity='0.08'/%3E%3Cpath d='M40 15L65 40L40 65L15 40Z' fill='none' stroke='%23D4902B' stroke-width='1.5' opacity='0.1'/%3E%3Ccircle cx='40' cy='40' r='12' fill='none' stroke='%238B5E3C' stroke-width='1' opacity='0.08'/%3E%3C/svg%3E");
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 64px 0 0;
+    background: var(--brand-cream);
+    overflow: hidden;
+  }
+
+  /* ============================
+     LANDING PAGE - SPLIT PATHS
+     ============================ */
+  .path-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .path-card {
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+  }
+  .path-card:hover { transform: translateY(-5px); }
+  .path-card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .path-card h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+  .path-card p { font-size: 0.95rem; line-height: 1.6; }
+  .path-seek { background: var(--brand-dark); color: var(--brand-cream); }
+  .path-seek:hover { background: #2d1c0e; border-color: var(--brand-gold); }
+  .path-join { background: var(--brand-rust); color: var(--brand-cream); }
+  .path-join:hover { background: #a8351a; border-color: var(--brand-gold); }
+
+  @media (max-width: 600px) {
+    .path-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ============================
+     ABOUT PAGE
+     ============================ */
+  .about-hero {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+  }
+  .about-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--brand-cream); margin-bottom: 1rem; }
+  .about-hero p { color: var(--brand-pattern); font-size: 1.1rem; max-width: 620px; margin: 0 auto; }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+
+  .about-visual {
+    background: var(--brand-rust);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M50 5L95 50L50 95L5 50Z' fill='none' stroke='%23F7F0E6' stroke-width='2' opacity='0.15'/%3E%3Cpath d='M50 20L80 50L50 80L20 50Z' fill='none' stroke='%23D4902B' stroke-width='2' opacity='0.2'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23D4902B' opacity='0.3'/%3E%3C/svg%3E");
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    color: var(--brand-cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  .value-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .value-card {
+    background: var(--brand-white);
+    border-radius: var(--radius-md);
+    padding: 1.8rem;
+    border-top: 4px solid var(--brand-gold);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .value-card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .value-card h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--brand-dark); }
+  .value-card p { font-size: 0.9rem; color: var(--brand-gray); line-height: 1.6; }
+
+  /* ============================
+     CATEGORY GRID (I'm looking for...)
+     ============================ */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .cat-btn {
+    background: var(--brand-white);
+    border: 2px solid var(--brand-pattern);
+    border-radius: var(--radius-md);
+    padding: 1.2rem 0.75rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--brand-dark);
+  }
+  .cat-btn:hover { border-color: var(--brand-rust); color: var(--brand-rust); background: rgba(200,71,42,0.04); }
+  .cat-btn.active { border-color: var(--brand-rust); background: var(--brand-rust); color: white; }
+  .cat-btn .cat-icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+
+  .search-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .search-bar input {
+    flex: 1;
+    padding: 0.75rem 1.2rem;
+    border: 2px solid var(--brand-pattern);
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background: var(--brand-white);
+    outline: none;
+    transition: var(--transition);
+  }
+  .search-bar input:focus { border-color: var(--brand-rust); }
+
+  .business-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .business-card {
+    background: var(--brand-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .business-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--brand-gold); }
+
+  .biz-card-header {
+    background: var(--brand-dark);
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23C8472A' stroke-width='1' opacity='0.15'/%3E%3C/svg%3E");
+  }
+  .biz-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--brand-rust);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--brand-cream);
+    font-weight: 700;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+  .biz-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .biz-card-name { color: var(--brand-cream); font-family: 'Playfair Display', serif; font-size: 1.05rem; }
+  .biz-card-cat { color: var(--brand-gold); font-size: 0.78rem; margin-top: 0.2rem; }
+
+  .biz-card-body { padding: 1rem 1.2rem; }
+  .biz-card-desc { font-size: 0.88rem; color: var(--brand-gray); line-height: 1.5; margin-bottom: 0.75rem; }
+  .biz-card-meta { display: flex; justify-content: space-between; align-items: center; }
+  .biz-card-location { font-size: 0.8rem; color: var(--brand-gray); }
+
+  /* ============================
+     BUSINESS PROFILE PAGE
+     ============================ */
+  .profile-hero {
+    background: var(--brand-dark);
+    padding: 3rem 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='none' stroke='%23C8472A' stroke-width='1.5' opacity='0.12'/%3E%3C/svg%3E");
+  }
+  .profile-hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--brand-gold);
+    object-fit: cover;
+    background: var(--brand-rust);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--brand-cream);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .profile-info h1 { font-size: 2rem; color: var(--brand-cream); }
+  .profile-info p { color: var(--brand-pattern); margin-top: 0.4rem; }
+
+  .profile-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+  @media (max-width: 800px) { .profile-body { grid-template-columns: 1fr; } }
+
+  .profile-section {
+    background: var(--brand-white);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+  }
+  .profile-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--brand-rust);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--brand-pattern);
+  }
+
+  /* ============================
+     REVIEW SECTION
+     ============================ */
+  .review-item {
+    background: var(--brand-light);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid var(--brand-gold);
+  }
+  .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; }
+  .review-name { font-weight: 600; font-size: 0.9rem; color: var(--brand-dark); }
+  .review-date { font-size: 0.75rem; color: var(--brand-gray); }
+  .review-text { font-size: 0.88rem; color: var(--brand-gray); line-height: 1.5; margin-top: 0.3rem; }
+
+  /* ============================
+     SIDEBAR INFO
+     ============================ */
+  .sidebar-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--brand-pattern);
+    font-size: 0.9rem;
+  }
+  .sidebar-info-item:last-child { border-bottom: none; }
+  .sidebar-info-label { color: var(--brand-gray); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.1rem; }
+  .sidebar-info-value { color: var(--brand-dark); }
+
+  /* ============================
+     ADMIN & CLIENT DASHBOARDS
+     ============================ */
+  .dashboard-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 64px);
+  }
+  @media (max-width: 768px) { .dashboard-layout { grid-template-columns: 1fr; } }
+
+  .dash-sidebar {
+    background: var(--brand-dark);
+    padding: 1.5rem 1rem;
+  }
+
+  .dash-sidebar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--brand-gold);
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dash-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--radius-sm);
+    color: var(--brand-pattern);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 0.15rem;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+  }
+  .dash-nav-item:hover, .dash-nav-item.active { background: rgba(212,144,43,0.15); color: var(--brand-gold); }
+  .dash-nav-item span.icon { font-size: 1.1rem; }
+
+  .dash-content {
+    padding: 2rem;
+    background: var(--brand-light);
+    overflow-y: auto;
+  }
+
+  .dash-section { display: none; }
+  .dash-section.active { display: block; }
+
+  .dash-header {
+    margin-bottom: 1.5rem;
+  }
+  .dash-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--brand-dark);
+  }
+  .dash-header p { color: var(--brand-gray); font-size: 0.9rem; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-card {
+    background: var(--brand-white);
+    border-radius: var(--radius-md);
+    padding: 1.3rem;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--brand-gold);
+  }
+  .stat-card .stat-value { font-size: 2rem; font-weight: 700; color: var(--brand-rust); font-family: 'Playfair Display', serif; }
+  .stat-card .stat-label { font-size: 0.82rem; color: var(--brand-gray); margin-top: 0.25rem; }
+
+  .data-table {
+    background: var(--brand-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .data-table table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    background: var(--brand-dark);
+    color: var(--brand-pattern);
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .data-table td {
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    border-bottom: 1px solid var(--brand-pattern);
+    vertical-align: middle;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--brand-cream); }
+
+  /* ============================
+     FILE UPLOAD AREA
+     ============================ */
+  .upload-area {
+    border: 2px dashed var(--brand-pattern);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--brand-gray);
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--brand-light);
+  }
+  .upload-area:hover { border-color: var(--brand-rust); background: rgba(200,71,42,0.04); }
+  .upload-area input[type=file] { display: none; }
+
+  /* ============================
+     FOOTER
+     ============================ */
+  footer {
+    background: var(--brand-dark);
+    color: var(--brand-pattern);
+    padding: 3rem 2rem 1.5rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 700px) { .footer-inner { grid-template-columns: 1fr; } }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--brand-cream); margin-bottom: 0.75rem; }
+  .footer-desc { font-size: 0.88rem; line-height: 1.6; color: var(--brand-gray); }
+  .footer-links h4 { color: var(--brand-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .footer-links ul { list-style: none; }
+  .footer-links li { margin-bottom: 0.4rem; }
+  .footer-links a { color: var(--brand-pattern); text-decoration: none; font-size: 0.88rem; transition: var(--transition); cursor: pointer; }
+  .footer-links a:hover { color: var(--brand-gold); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(247,240,230,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--brand-gray);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--brand-gray);
+  }
+  .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
+  .empty-state p { font-size: 0.95rem; }
+
+  /* ============================
+     TOAST
+     ============================ */
+  #toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--brand-dark);
+    color: var(--brand-cream);
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-width: 320px;
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid var(--brand-gold);
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Image upload preview grid */
+  .img-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .img-preview-grid img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--brand-pattern);
+  }
+  .img-preview-wrap { position: relative; }
+  .img-preview-del {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: var(--brand-rust);
+    color: white;
+    border: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Utility */
+  .mt-1 { margin-top: 0.5rem; }
+  .mt-2 { margin-top: 1rem; }
+  .mt-3 { margin-top: 1.5rem; }
+  .mb-1 { margin-bottom: 0.5rem; }
+  .mb-2 { margin-bottom: 1rem; }
+  .text-center { text-align: center; }
+  .text-muted { color: var(--brand-gray); font-size: 0.88rem; }
+  .flex { display: flex; }
+  .gap-1 { gap: 0.5rem; }
+  .gap-2 { gap: 1rem; }
+  .items-center { align-items: center; }
+  .justify-between { justify-content: space-between; }
+  .w-full { width: 100%; }
+
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--brand-gray);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav>
+  <div class="nav-logo" onclick="showPage('landing')">
+    Of <span class="accent">Colour</span>
+  </div>
+  <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <button onclick="showPage('landing')">Home</button>
+    <button onclick="showPage('about')">About</button>
+    <button onclick="showPage('directory')">I'm Looking For…</button>
+    <button onclick="handleClientLogin()" id="navLoginBtn">Client Login</button>
+    <button class="btn-nav-cta" onclick="openModal('signupModal')">Join Us</button>
+  </div>
+</nav>
+<div class="kente-stripe"></div>
+
+<!-- ============================================================
+     PAGES
+     ============================================================ -->
+
+<!-- ==================== LANDING PAGE ==================== -->
+<div class="page active" id="page-landing">
+  <div style="position:relative; overflow:hidden; background: var(--brand-cream);">
+    <div class="hero">
+      <span class="hero-kicker">Blueprints of You — Social Development Fund</span>
+      <h1>Uplift. Connect. <span class="accent">Thrive Together.</span></h1>
+      <p class="hero-sub">Of Colour is a proudly African platform connecting talented small businesses with communities who need them. Every service listed here is part of a movement — building economic dignity from the ground up.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-lg" onclick="showPage('directory')">Find a Service</button>
+        <button class="btn btn-outline btn-lg" onclick="showPage('about')">Our Story</button>
+      </div>
+    </div>
+    <div class="hero-pattern"></div>
+  </div>
+
+  <!-- Split paths -->
+  <div style="background: var(--brand-white); padding: 4rem 2rem;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 class="section-title">How can we help you today?</h2>
+      <div class="divider-adinkra" style="margin: 0.75rem auto 0.5rem;"></div>
+      <p class="section-subtitle" style="margin: 0 auto 0;">Whether you're searching for a trusted service provider or want to grow your business with us — you're in the right place.</p>
+      <div class="path-cards">
+        <div class="path-card path-seek" onclick="showPage('directory')">
+          <span class="path-card-icon">🔍</span>
+          <h3>I'm Looking For a Service</h3>
+          <p>Browse verified local businesses across home care, wellness, trades, real estate and more.</p>
+        </div>
+        <div class="path-card path-join" onclick="openModal('signupModal')">
+          <span class="path-card-icon">🌱</span>
+          <h3>I Want to List My Business</h3>
+          <p>Join our growing community of entrepreneurs and reach more clients through our outreach programs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats banner -->
+  <div class="pattern-bg" style="padding: 3rem 2rem; color: var(--brand-cream);">
+    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center;">
+      <div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--brand-gold);" id="statBusinesses">0</div>
+        <div style="font-size: 0.9rem; color: var(--brand-pattern);">Verified Businesses</div>
+      </div>
+      <div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--brand-gold);">7</div>
+        <div style="font-size: 0.9rem; color: var(--brand-pattern);">Service Categories</div>
+      </div>
+      <div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--brand-gold);">🌍</div>
+        <div style="font-size: 0.9rem; color: var(--brand-pattern);">Pan-African Vision</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Of Colour</div>
+        <p class="footer-desc">A platform by Blueprints of You — dedicated to social development, economic empowerment, and community upliftment across Africa.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a onclick="showPage('landing')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('directory')">Find a Service</a></li>
+          <li><a onclick="openModal('signupModal')">List Your Business</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a>info@ofcolour.co.za</a></li>
+          <li><a>Blueprints of You NGO</a></li>
+          <li><a onclick="handleClientLogin()">Client Login</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Of Colour — Blueprints of You. All rights reserved.</span>
+      <span>Built with purpose 🌍</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<div class="page" id="page-about">
+  <!-- ABOUT SECTION CONTENT — edit the text below -->
+  <div class="about-hero pattern-bg">
+    <h1>Who We Are</h1>
+    <p>Of Colour is more than a directory — it is a movement rooted in dignity, belonging, and the belief that every person deserves an equal chance to thrive.</p>
+  </div>
+
+  <div class="section">
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Our Story</h2>
+        <div class="divider-adinkra"></div>
+        <p style="color: var(--brand-gray); line-height: 1.8; font-size: 1rem; margin-bottom: 1.2rem;">
+          Of Colour was born from a simple truth: that talent, skill, and entrepreneurial spirit are evenly distributed — but opportunity is not. Founded under <strong>Blueprints of You</strong>, a registered NGO, we exist to close that gap.
+        </p>
+        <p style="color: var(--brand-gray); line-height: 1.8; font-size: 1rem; margin-bottom: 1.2rem;">
+          We created a social development fund that fuels outreach programs in disadvantaged communities, giving small business owners a credible platform and an amplified voice. When you hire through Of Colour, you're not just finding a service — you're investing in someone's livelihood and your community.
+        </p>
+        <p style="color: var(--brand-gray); line-height: 1.8; font-size: 1rem;">
+          Every business listed on our platform is personally verified and supported through training, promotion, and community advocacy. We don't just list businesses — we build them up.
+        </p>
+      </div>
+      <div class="about-visual">
+        "Ubuntu — I am because we are."
+        <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; margin-top: 1rem; opacity: 0.8; font-style: italic;">The founding principle of Of Colour</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--brand-white); padding: 4rem 2rem;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <h2 class="section-title" style="text-align:center;">What We Do</h2>
+      <div class="divider-adinkra" style="margin: 0.75rem auto 2.5rem;"></div>
+      <div class="value-cards">
+        <div class="value-card">
+          <span class="value-card-icon">🌱</span>
+          <h4>Social Development Fund</h4>
+          <p>A dedicated fund channelled into outreach, skills training, and upliftment programs for disadvantaged communities.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-card-icon">🏪</span>
+          <h4>Business Platform</h4>
+          <p>A verified marketplace where vetted small businesses can showcase their services, credentials, and build a reputation.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-card-icon">📣</span>
+          <h4>Community Promotion</h4>
+          <p>Active promotion of our listed businesses through social outreach, events, and advocacy campaigns.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-card-icon">🤝</span>
+          <h4>Mentorship & Support</h4>
+          <p>Ongoing support for business owners including guidance, training, and connection to wider networks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Are you looking or joining? -->
+  <div class="pattern-bg" style="padding: 5rem 2rem; text-align: center;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--brand-cream); margin-bottom: 1rem;">Ready to take the next step?</h2>
+    <p style="color: var(--brand-pattern); margin-bottom: 2rem; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto;">Join us as a service seeker or a business owner — either way, you're part of something bigger.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <button class="btn btn-gold btn-lg" onclick="showPage('directory')">🔍 Find a Service</button>
+      <button class="btn btn-outline btn-lg" style="border-color: var(--brand-cream); color: var(--brand-cream);" onclick="openModal('signupModal')">🌱 List Your Business</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Of Colour</div>
+        <p class="footer-desc">A platform by Blueprints of You — dedicated to social development, economic empowerment, and community upliftment across Africa.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a onclick="showPage('landing')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('directory')">Find a Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a>info@ofcolour.co.za</a></li>
+          <li><a onclick="handleClientLogin()">Client Login</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Of Colour — Blueprints of You.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ==================== DIRECTORY PAGE ==================== -->
+<div class="page" id="page-directory">
+  <div class="section" style="padding-bottom: 0;">
+    <h1 class="section-title">I'm Looking For…</h1>
+    <div class="divider-adinkra"></div>
+    <p class="section-subtitle">Browse our verified community of trusted service providers. Filter by category or search by name.</p>
+
+    <!-- SERVICE CATEGORIES — add/remove categories here -->
+    <div class="categories-grid" id="categoryGrid">
+      <button class="cat-btn active" data-cat="all" onclick="filterCategory('all', this)">
+        <span class="cat-icon">🌍</span>All Services
+      </button>
+      <button class="cat-btn" data-cat="Home Care" onclick="filterCategory('Home Care', this)">
+        <span class="cat-icon">🏠</span>Home Care
+      </button>
+      <button class="cat-btn" data-cat="Health & Wellness" onclick="filterCategory('Health & Wellness', this)">
+        <span class="cat-icon">💆</span>Health & Wellness
+      </button>
+      <button class="cat-btn" data-cat="Plumbing" onclick="filterCategory('Plumbing', this)">
+        <span class="cat-icon">🔧</span>Plumbing
+      </button>
+      <button class="cat-btn" data-cat="Electrical" onclick="filterCategory('Electrical', this)">
+        <span class="cat-icon">⚡</span>Electrical
+      </button>
+      <button class="cat-btn" data-cat="Gardening" onclick="filterCategory('Gardening', this)">
+        <span class="cat-icon">🌿</span>Gardening
+      </button>
+      <button class="cat-btn" data-cat="Maintenance" onclick="filterCategory('Maintenance', this)">
+        <span class="cat-icon">🛠️</span>Maintenance
+      </button>
+      <button class="cat-btn" data-cat="Real Estate" onclick="filterCategory('Real Estate', this)">
+        <span class="cat-icon">🏡</span>Real Estate
+      </button>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by business name, service or location…" oninput="renderDirectory()">
+      <button class="btn btn-primary" onclick="renderDirectory()">Search</button>
+    </div>
+
+    <div class="business-grid" id="businessGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+  <div style="height: 4rem;"></div>
+</div>
+
+<!-- ==================== BUSINESS PROFILE PAGE ==================== -->
+<div class="page" id="page-profile">
+  <div id="profileContent"><!-- Populated by JS --></div>
+</div>
+
+<!-- ==================== CLIENT DASHBOARD ==================== -->
+<div class="page" id="page-client-dashboard">
+  <div class="dashboard-layout">
+    <div class="dash-sidebar">
+      <div class="dash-sidebar-title">Client Portal</div>
+      <div id="clientDashName" style="font-size: 0.82rem; color: var(--brand-gray); padding: 0 0.75rem; margin-bottom: 1rem;"></div>
+      <button class="dash-nav-item active" onclick="switchClientTab('overview', this)"><span class="icon">📊</span> Overview</button>
+      <button class="dash-nav-item" onclick="switchClientTab('edit-profile', this)"><span class="icon">✏️</span> Edit Profile</button>
+      <button class="dash-nav-item" onclick="switchClientTab('photos', this)"><span class="icon">📷</span> Manage Photos</button>
+      <button class="dash-nav-item" onclick="switchClientTab('reviews', this)"><span class="icon">⭐</span> My Reviews</button>
+      <button class="dash-nav-item" style="margin-top: auto; color: #c0392b;" onclick="clientLogout()"><span class="icon">🚪</span> Logout</button>
+    </div>
+    <div class="dash-content">
+      <!-- Overview -->
+      <div class="dash-section active" id="clientTab-overview">
+        <div class="dash-header">
+          <h2>Welcome Back</h2>
+          <p>Here's a summary of your business profile.</p>
+        </div>
+        <div class="stats-row" id="clientStats"></div>
+        <div style="background: var(--brand-white); border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+          <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--brand-rust);">Profile Status</h3>
+          <div id="clientStatusInfo"></div>
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-outline" onclick="viewOwnProfile()">👁 View My Public Profile</button>
+          </div>
+        </div>
+      </div>
+      <!-- Edit Profile -->
+      <div class="dash-section" id="clientTab-edit-profile">
+        <div class="dash-header">
+          <h2>Edit Business Profile</h2>
+          <p>Update your business information visible to the public.</p>
+        </div>
+        <div style="background: var(--brand-white); border-radius: var(--radius-md); padding: 2rem; box-shadow: var(--shadow-sm);">
+          <div id="editProfileForm"></div>
+        </div>
+      </div>
+      <!-- Photos -->
+      <div class="dash-section" id="clientTab-photos">
+        <div class="dash-header">
+          <h2>Business Photos</h2>
+          <p>Upload photos of your work, premises, or team. These appear on your public profile.</p>
+        </div>
+        <div style="background: var(--brand-white); border-radius: var(--radius-md); padding: 2rem; box-shadow: var(--shadow-sm);">
+          <div id="photoManager"></div>
+        </div>
+      </div>
+      <!-- Reviews -->
+      <div class="dash-section" id="clientTab-reviews">
+        <div class="dash-header">
+          <h2>Customer Reviews</h2>
+          <p>See what your clients are saying.</p>
+        </div>
+        <div id="clientReviewsList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ADMIN DASHBOARD ==================== -->
+<div class="page" id="page-admin-dashboard">
+  <div class="dashboard-layout">
+    <div class="dash-sidebar">
+      <div class="dash-sidebar-title">Admin Panel</div>
+      <div style="font-size: 0.82rem; color: var(--brand-gray); padding: 0 0.75rem; margin-bottom: 1rem;">Master Control</div>
+      <button class="dash-nav-item active" onclick="switchAdminTab('overview', this)"><span class="icon">📊</span> Overview</button>
+      <button class="dash-nav-item" onclick="switchAdminTab('pending', this)"><span class="icon">⏳</span> Pending Approval <span id="pendingBadge" style="background: var(--brand-rust); color: white; font-size: 0.7rem; border-radius: 10px; padding: 1px 6px; margin-left: 4px;"></span></button>
+      <button class="dash-nav-item" onclick="switchAdminTab('clients', this)"><span class="icon">👥</span> All Clients</button>
+      <button class="dash-nav-item" onclick="switchAdminTab('reviews', this)"><span class="icon">⭐</span> All Reviews</button>
+      <button class="dash-nav-item" style="margin-top: 2rem; color: #c0392b;" onclick="adminLogout()"><span class="icon">🚪</span> Logout</button>
+    </div>
+    <div class="dash-content">
+      <!-- Admin Overview -->
+      <div class="dash-section active" id="adminTab-overview">
+        <div class="dash-header">
+          <h2>Platform Overview</h2>
+          <p>Key statistics and platform health at a glance.</p>
+        </div>
+        <div class="stats-row" id="adminStats"></div>
+      </div>
+      <!-- Pending -->
+      <div class="dash-section" id="adminTab-pending">
+        <div class="dash-header">
+          <h2>Pending Applications</h2>
+          <p>Review and approve new business registrations.</p>
+        </div>
+        <div id="pendingList"></div>
+      </div>
+      <!-- All Clients -->
+      <div class="dash-section" id="adminTab-clients">
+        <div class="dash-header">
+          <h2>All Clients</h2>
+          <p>View, manage and suspend active business profiles.</p>
+        </div>
+        <div id="clientsList"></div>
+      </div>
+      <!-- All Reviews -->
+      <div class="dash-section" id="adminTab-reviews">
+        <div class="dash-header">
+          <h2>All Reviews</h2>
+          <p>Monitor customer reviews across all businesses.</p>
+        </div>
+        <div id="adminReviewsList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     MODALS
+     ============================================================ -->
+
+<!-- Login Modal -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+    <h2>Client Login</h2>
+    <div id="loginAlert"></div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="loginEmail" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••">
+    </div>
+    <button class="btn btn-primary w-full" onclick="doLogin()">Login to Portal</button>
+    <p class="text-muted text-center mt-2" style="font-size: 0.82rem;">Don't have an account? <a style="color: var(--brand-rust); cursor:pointer;" onclick="closeModal('loginModal'); openModal('signupModal');">Register your business</a></p>
+  </div>
+</div>
+
+<!-- Signup / Registration Modal -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal" style="max-width: 640px;">
+    <button class="modal-close" onclick="closeModal('signupModal')">✕</button>
+    <h2>Register Your Business</h2>
+    <p class="text-muted mb-2" style="font-size: 0.88rem; margin-bottom: 1.5rem;">Complete this form to apply for a listing. Your application will be reviewed and approved by our team.</p>
+    <div id="signupAlert"></div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="sig_name" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Business Name *</label>
+        <input type="text" id="sig_bizname" placeholder="Trading name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>ID Number *</label>
+        <input type="text" id="sig_id" placeholder="13-digit SA ID number">
+      </div>
+      <div class="form-group">
+        <label>Service Category *</label>
+        <select id="sig_cat">
+          <option value="">Select category…</option>
+          <option>Home Care</option>
+          <option>Health & Wellness</option>
+          <option>Plumbing</option>
+          <option>Electrical</option>
+          <option>Gardening</option>
+          <option>Maintenance</option>
+          <option>Real Estate</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Business Address *</label>
+      <input type="text" id="sig_address" placeholder="Street address, City, Province">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="sig_email" placeholder="business@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" id="sig_phone" placeholder="071 000 0000">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Password *</label>
+        <input type="password" id="sig_pass" placeholder="Choose a password">
+      </div>
+      <div class="form-group">
+        <label>Confirm Password *</label>
+        <input type="password" id="sig_pass2" placeholder="Repeat password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Proof of Business Registration</label>
+      <div class="upload-area" onclick="document.getElementById('sig_doc').click()">
+        📎 Click to upload CIPC certificate, tax clearance, or other registration doc (PDF / image)
+        <br><span style="font-size:0.75rem; color: var(--brand-gray);">Max 5MB</span>
+        <input type="file" id="sig_doc" accept=".pdf,.jpg,.jpeg,.png" onchange="handleDocUpload(this)">
+      </div>
+      <div id="docUploadStatus" class="mt-1"></div>
+    </div>
+    <button class="btn btn-primary w-full" style="margin-top: 0.5rem;" onclick="submitSignup()">Submit Application</button>
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal-overlay" id="reviewModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('reviewModal')">✕</button>
+    <h2>Leave a Review</h2>
+    <p class="text-muted mb-2" id="reviewModalBizName"></p>
+    <div id="reviewAlert"></div>
+    <div class="form-group">
+      <label>Your Name *</label>
+      <input type="text" id="rev_name" placeholder="How should we credit you?">
+    </div>
+    <div class="form-group">
+      <label>Your Rating *</label>
+      <div class="stars-input" id="starInput">
+        <input type="radio" name="rating" id="s5" value="5"><label for="s5">★</label>
+        <input type="radio" name="rating" id="s4" value="4"><label for="s4">★</label>
+        <input type="radio" name="rating" id="s3" value="3"><label for="s3">★</label>
+        <input type="radio" name="rating" id="s2" value="2"><label for="s2">★</label>
+        <input type="radio" name="rating" id="s1" value="1"><label for="s1">★</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Your Review *</label>
+      <textarea id="rev_text" placeholder="Share your experience with this business…"></textarea>
+    </div>
+    <button class="btn btn-primary w-full" onclick="submitReview()">Post Review</button>
+  </div>
+</div>
+
+<!-- Image Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="Enlarged photo">
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+
+<!-- ============================================================
+     JAVASCRIPT — APPLICATION LOGIC
+     ============================================================ -->
+<script>
+// ============================================================
+// ADMIN CONFIG — change credentials here
+// ============================================================
+const ADMIN_EMAIL    = 'admin@ofcolour.co.za';
+const ADMIN_PASSWORD = 'OfColour2025!';
+
+// ============================================================
+// DATA STORE — uses localStorage so data persists
+// ============================================================
+function getData(key, fallback) {
+  try { const v = localStorage.getItem('oc_' + key); return v ? JSON.parse(v) : fallback; }
+  catch(e) { return fallback; }
+}
+function setData(key, val) {
+  try { localStorage.setItem('oc_' + key, JSON.stringify(val)); } catch(e) {}
+}
+
+function getClients()  { return getData('clients', []); }
+function setClients(d) { setData('clients', d); }
+function getReviews()  { return getData('reviews', []); }
+function setReviews(d) { setData('reviews', d); }
+
+// Seed demo data if empty
+function seedDemoData() {
+  if (getClients().length > 0) return;
+  const demos = [
+    {
+      id: 'c1', status: 'approved',
+      name: 'Thandi Mokoena', bizName: 'Thandi\'s Home Helpers',
+      category: 'Home Care', email: 'thandi@example.com',
+      phone: '076 123 4567', address: 'Soweto, Gauteng',
+      about: 'Professional home cleaning, ironing, and domestic care services. Over 10 years experience serving Gauteng families with pride and reliability.',
+      services: 'Deep cleaning, Regular cleaning, Ironing, Laundry, Child minding',
+      password: 'demo123', idNumber: '8001015009087',
+      photos: [], profilePic: '',
+      regDoc: '', approved: true,
+      joinDate: '2024-08-15'
+    },
+    {
+      id: 'c2', status: 'approved',
+      name: 'Sipho Ndlovu', bizName: 'Ndlovu Electrical Solutions',
+      category: 'Electrical', email: 'sipho@example.com',
+      phone: '082 987 6543', address: 'Midrand, Johannesburg',
+      about: 'Qualified master electrician with 15 years in residential and commercial electrical installations. ECSA registered. Safe, reliable, and affordable.',
+      services: 'Wiring, DB board installation, Fault finding, Certificate of compliance, Solar installations',
+      password: 'demo123', idNumber: '7803025003087',
+      photos: [], profilePic: '',
+      regDoc: '', approved: true,
+      joinDate: '2024-09-03'
+    },
+    {
+      id: 'c3', status: 'approved',
+      name: 'Naledi Sithole', bizName: 'Green Thumb Gardens',
+      category: 'Gardening', email: 'naledi@example.com',
+      phone: '073 456 7890', address: 'Pretoria, Tshwane',
+      about: 'Passionate about creating beautiful, sustainable gardens. Specialising in indigenous plants, water-wise gardens, and weekly maintenance.',
+      services: 'Lawn mowing, Garden design, Irrigation, Tree trimming, Indigenous planting',
+      password: 'demo123', idNumber: '9204105001080',
+      photos: [], profilePic: '',
+      regDoc: '', approved: true,
+      joinDate: '2024-10-01'
+    }
+  ];
+  setClients(demos);
+
+  const demoReviews = [
+    { id: 'r1', clientId: 'c1', name: 'Mama Joyce', rating: 5, text: 'Thandi is absolutely wonderful! My house has never been cleaner. Highly recommend to anyone in Soweto.', date: '2025-01-12' },
+    { id: 'r2', clientId: 'c2', name: 'Mr Dlamini', rating: 5, text: 'Sipho sorted out our entire DB board and installed security lights. Very professional, price was fair.', date: '2025-02-08' },
+    { id: 'r3', clientId: 'c3', name: 'The Pretorius Family', rating: 4, text: 'Naledi transformed our boring back yard into something amazing. Patient, creative, and very hard working.', date: '2025-01-30' }
+  ];
+  setReviews(demoReviews);
+}
+
+// ============================================================
+// SESSION
+// ============================================================
+let currentUser = null; // { type: 'admin' } or { type: 'client', id: '...' }
+
+function getSession() {
+  try { return JSON.parse(sessionStorage.getItem('oc_session')) || null; } catch(e) { return null; }
+}
+function setSession(s) { sessionStorage.setItem('oc_session', JSON.stringify(s)); }
+function clearSession() { sessionStorage.removeItem('oc_session'); }
+
+// ============================================================
+// PAGE NAVIGATION
+// ============================================================
+let currentPage = 'landing';
+let currentCategory = 'all';
+
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+  currentPage = page;
+  window.scrollTo(0, 0);
+  closeAllModals();
+
+  if (page === 'landing') updateStatsBanner();
+  if (page === 'directory') renderDirectory();
+  if (page === 'client-dashboard') renderClientDashboard();
+  if (page === 'admin-dashboard') renderAdminDashboard();
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function toggleMobileNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function handleClientLogin() {
+  const session = getSession();
+  if (session) {
+    if (session.type === 'admin') showPage('admin-dashboard');
+    else showPage('client-dashboard');
+  } else {
+    openModal('loginModal');
+  }
+}
+
+function updateNavBtn() {
+  const session = getSession();
+  const btn = document.getElementById('navLoginBtn');
+  if (session) {
+    btn.textContent = session.type === 'admin' ? '⚙ Admin Panel' : '📊 My Dashboard';
+  } else {
+    btn.textContent = 'Client Login';
+  }
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+function closeAllModals() {
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+}
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+});
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg, duration = 3500) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ============================================================
+// STAR RATING HELPER
+// ============================================================
+function renderStars(rating) {
+  let html = '<span class="stars-display">';
+  for (let i = 1; i <= 5; i++) {
+    html += `<svg viewBox="0 0 24 24" fill="${i <= rating ? 'var(--brand-gold)' : '#ddd'}" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+  }
+  html += '</span>';
+  return html;
+}
+
+function avgRating(clientId) {
+  const reviews = getReviews().filter(r => r.clientId === clientId);
+  if (!reviews.length) return 0;
+  return reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
+}
+
+// ============================================================
+// LOGIN
+// ============================================================
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPassword').value;
+  const alertEl = document.getElementById('loginAlert');
+  alertEl.innerHTML = '';
+
+  if (!email || !pass) {
+    alertEl.innerHTML = '<div class="alert alert-error">Please fill in all fields.</div>';
+    return;
+  }
+
+  // Admin login
+  if (email === ADMIN_EMAIL && pass === ADMIN_PASSWORD) {
+    setSession({ type: 'admin' });
+    closeAllModals();
+    updateNavBtn();
+    showPage('admin-dashboard');
+    return;
+  }
+
+  // Client login
+  const clients = getClients();
+  const client = clients.find(c => c.email.toLowerCase() === email.toLowerCase() && c.password === pass);
+  if (!client) {
+    alertEl.innerHTML = '<div class="alert alert-error">Incorrect email or password.</div>';
+    return;
+  }
+  if (client.status === 'pending') {
+    alertEl.innerHTML = '<div class="alert alert-info">Your application is pending approval. We\'ll notify you by email when approved.</div>';
+    return;
+  }
+  if (client.status === 'rejected') {
+    alertEl.innerHTML = '<div class="alert alert-error">Your application was not approved. Please contact us for more information.</div>';
+    return;
+  }
+
+  setSession({ type: 'client', id: client.id });
+  closeAllModals();
+  updateNavBtn();
+  showPage('client-dashboard');
+}
+
+function clientLogout() {
+  clearSession();
+  updateNavBtn();
+  showPage('landing');
+}
+function adminLogout() {
+  clearSession();
+  updateNavBtn();
+  showPage('landing');
+}
+
+// ============================================================
+// SIGNUP
+// ============================================================
+let uploadedDocData = null;
+function handleDocUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) {
+    document.getElementById('docUploadStatus').innerHTML = '<span style="color:var(--brand-rust);">File too large (max 5MB)</span>';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    uploadedDocData = { name: file.name, data: e.target.result };
+    document.getElementById('docUploadStatus').innerHTML = `<span style="color: var(--brand-green);">✓ ${file.name} uploaded</span>`;
+  };
+  reader.readAsDataURL(file);
+}
+
+function submitSignup() {
+  const alertEl = document.getElementById('signupAlert');
+  const fields = { name: 'sig_name', bizName: 'sig_bizname', idNumber: 'sig_id', category: 'sig_cat', address: 'sig_address', email: 'sig_email', phone: 'sig_phone', password: 'sig_pass', pass2: 'sig_pass2' };
+  const vals = {};
+  for (const [k, id] of Object.entries(fields)) vals[k] = document.getElementById(id).value.trim();
+
+  if (!vals.name || !vals.bizName || !vals.idNumber || !vals.category || !vals.address || !vals.email || !vals.phone || !vals.password) {
+    alertEl.innerHTML = '<div class="alert alert-error">Please fill in all required fields.</div>';
+    return;
+  }
+  if (vals.password !== vals.pass2) {
+    alertEl.innerHTML = '<div class="alert alert-error">Passwords do not match.</div>';
+    return;
+  }
+  if (vals.password.length < 6) {
+    alertEl.innerHTML = '<div class="alert alert-error">Password must be at least 6 characters.</div>';
+    return;
+  }
+
+  const clients = getClients();
+  if (clients.find(c => c.email.toLowerCase() === vals.email.toLowerCase())) {
+    alertEl.innerHTML = '<div class="alert alert-error">An account with this email already exists.</div>';
+    return;
+  }
+
+  const newClient = {
+    id: 'c' + Date.now(),
+    status: 'pending',
+    name: vals.name,
+    bizName: vals.bizName,
+    category: vals.category,
+    email: vals.email,
+    phone: vals.phone,
+    address: vals.address,
+    password: vals.password,
+    idNumber: vals.idNumber,
+    regDoc: uploadedDocData || null,
+    about: '',
+    services: '',
+    photos: [],
+    profilePic: '',
+    joinDate: new Date().toISOString().split('T')[0]
+  };
+
+  clients.push(newClient);
+  setClients(clients);
+  uploadedDocData = null;
+
+  closeModal('signupModal');
+  showToast('Application submitted! We\'ll review it and notify you by email.');
+}
+
+// ============================================================
+// DIRECTORY
+// ============================================================
+function filterCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDirectory();
+}
+
+function renderDirectory() {
+  const grid = document.getElementById('businessGrid');
+  const search = (document.getElementById('searchInput')?.value || '').toLowerCase();
+  let clients = getClients().filter(c => c.status === 'approved');
+
+  if (currentCategory !== 'all') clients = clients.filter(c => c.category === currentCategory);
+  if (search) clients = clients.filter(c =>
+    c.bizName.toLowerCase().includes(search) ||
+    c.category.toLowerCase().includes(search) ||
+    c.address.toLowerCase().includes(search) ||
+    (c.services || '').toLowerCase().includes(search)
+  );
+
+  if (!clients.length) {
+    grid.innerHTML = '<div class="no-results"><div style="font-size:3rem; margin-bottom:1rem;">🌍</div><p>No businesses found. Try a different search or category.</p></div>';
+    return;
+  }
+
+  grid.innerHTML = clients.map(c => {
+    const avg = avgRating(c.id);
+    const reviews = getReviews().filter(r => r.clientId === c.id);
+    const initials = c.bizName.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+    return `
+    <div class="business-card" onclick="viewProfile('${c.id}')">
+      <div class="biz-card-header">
+        <div class="biz-avatar">${c.profilePic ? `<img src="${c.profilePic}" alt="${c.bizName}">` : initials}</div>
+        <div>
+          <div class="biz-card-name">${c.bizName}</div>
+          <div class="biz-card-cat">${c.category}</div>
+        </div>
+      </div>
+      <div class="biz-card-body">
+        <p class="biz-card-desc">${c.about ? c.about.slice(0, 100) + (c.about.length > 100 ? '…' : '') : 'Professional services available.'}</p>
+        <div class="biz-card-meta">
+          <span class="biz-card-location">📍 ${c.address.split(',').pop().trim()}</span>
+          <div style="display:flex; align-items:center; gap:0.3rem;">
+            ${renderStars(Math.round(avg))}
+            <span style="font-size:0.78rem; color: var(--brand-gray);">(${reviews.length})</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStatsBanner() {
+  const count = getClients().filter(c => c.status === 'approved').length;
+  const el = document.getElementById('statBusinesses');
+  if (el) el.textContent = count;
+}
+
+// ============================================================
+// BUSINESS PROFILE
+// ============================================================
+let currentProfileId = null;
+
+function viewProfile(clientId) {
+  currentProfileId = clientId;
+  const client = getClients().find(c => c.id === clientId);
+  if (!client) return;
+
+  const reviews = getReviews().filter(r => r.clientId === clientId);
+  const avg = avgRating(clientId);
+  const initials = client.bizName.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  const services = client.services ? client.services.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+  const photosHtml = client.photos && client.photos.length
+    ? `<div class="carousel-wrap">
+        <div class="carousel-track" id="carouselTrack-${clientId}">
+          ${client.photos.map(p => `<img src="${p}" alt="Business photo" onclick="openLightbox('${p}')">`).join('')}
+        </div>
+        <div class="carousel-nav">
+          <button onclick="scrollCarousel('${clientId}', -1)">◀</button>
+          <button onclick="scrollCarousel('${clientId}', 1)">▶</button>
+        </div>
+      </div>`
+    : '<p class="text-muted" style="font-size:0.88rem;">No photos uploaded yet.</p>';
+
+  const reviewsHtml = reviews.length
+    ? reviews.map(r => `
+        <div class="review-item">
+          <div class="review-header">
+            <div>
+              <div class="review-name">${r.name}</div>
+              ${renderStars(r.rating)}
+            </div>
+            <div class="review-date">${r.date}</div>
+          </div>
+          <div class="review-text">${r.text}</div>
+        </div>`).join('')
+    : '<p class="text-muted" style="font-size:0.88rem;">No reviews yet. Be the first to leave one!</p>';
+
+  document.getElementById('profileContent').innerHTML = `
+    <div class="profile-hero">
+      <div class="profile-hero-inner">
+        <div class="profile-avatar">${client.profilePic ? `<img src="${client.profilePic}" alt="${client.bizName}">` : initials}</div>
+        <div class="profile-info">
+          <h1>${client.bizName}</h1>
+          <p>${client.category} &nbsp;|&nbsp; 📍 ${client.address}</p>
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
+            ${renderStars(Math.round(avg))}
+            <span style="color:var(--brand-pattern); font-size:0.88rem;">${avg > 0 ? avg.toFixed(1) + '/5' : 'No ratings yet'} (${reviews.length} review${reviews.length !== 1 ? 's' : ''})</span>
+          </div>
+        </div>
+        <div style="margin-left: auto; display: flex; flex-direction: column; gap: 0.5rem;">
+          <button class="btn btn-gold" onclick="openReviewModal('${clientId}')">⭐ Leave a Review</button>
+          <button class="btn btn-outline" style="border-color: var(--brand-pattern); color: var(--brand-pattern);" onclick="showPage('directory')">← Back to Directory</button>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div>
+        <div class="profile-section">
+          <h3>About ${client.bizName}</h3>
+          <p style="color: var(--brand-gray); line-height: 1.7;">${client.about || 'No description provided yet.'}</p>
+        </div>
+        <div class="profile-section">
+          <h3>Services Offered</h3>
+          ${services.length ? `<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">${services.map(s => `<span class="badge badge-gold">${s}</span>`).join('')}</div>` : '<p class="text-muted">Services not listed yet.</p>'}
+        </div>
+        <div class="profile-section">
+          <h3>Gallery</h3>
+          ${photosHtml}
+        </div>
+        <div class="profile-section">
+          <h3>Customer Reviews</h3>
+          ${reviewsHtml}
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-outline" onclick="openReviewModal('${clientId}')">+ Write a Review</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="profile-section">
+          <h3>Contact Info</h3>
+          <div class="sidebar-info-item">
+            <div>
+              <div class="sidebar-info-label">Phone</div>
+              <div class="sidebar-info-value">${client.phone}</div>
+            </div>
+          </div>
+          <div class="sidebar-info-item">
+            <div>
+              <div class="sidebar-info-label">Email</div>
+              <div class="sidebar-info-value" style="word-break:break-all;">${client.email}</div>
+            </div>
+          </div>
+          <div class="sidebar-info-item">
+            <div>
+              <div class="sidebar-info-label">Location</div>
+              <div class="sidebar-info-value">${client.address}</div>
+            </div>
+          </div>
+          <div class="sidebar-info-item">
+            <div>
+              <div class="sidebar-info-label">Category</div>
+              <div class="sidebar-info-value">${client.category}</div>
+            </div>
+          </div>
+          <div class="sidebar-info-item">
+            <div>
+              <div class="sidebar-info-label">Member Since</div>
+              <div class="sidebar-info-value">${client.joinDate || '2024'}</div>
+            </div>
+          </div>
+        </div>
+        <div class="profile-section">
+          <h3>Rating Breakdown</h3>
+          ${[5,4,3,2,1].map(star => {
+            const count = reviews.filter(r => r.rating === star).length;
+            const pct = reviews.length ? Math.round((count / reviews.length) * 100) : 0;
+            return `<div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.4rem; font-size:0.85rem;">
+              <span style="width:1.5rem; text-align:right;">${star}★</span>
+              <div style="flex:1; height:8px; background: var(--brand-pattern); border-radius:4px; overflow:hidden;">
+                <div style="width:${pct}%; height:100%; background: var(--brand-gold); border-radius:4px;"></div>
+              </div>
+              <span style="color:var(--brand-gray); width:2rem;">${count}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+
+  showPage('profile');
+}
+
+function scrollCarousel(clientId, dir) {
+  const track = document.getElementById('carouselTrack-' + clientId);
+  if (track) track.scrollLeft += dir * 260;
+}
+
+// ============================================================
+// LIGHTBOX
+// ============================================================
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+// ============================================================
+// REVIEWS
+// ============================================================
+function openReviewModal(clientId) {
+  currentProfileId = clientId;
+  const client = getClients().find(c => c.id === clientId);
+  document.getElementById('reviewModalBizName').textContent = 'Reviewing: ' + (client ? client.bizName : '');
+  document.getElementById('reviewAlert').innerHTML = '';
+  document.getElementById('rev_name').value = '';
+  document.getElementById('rev_text').value = '';
+  document.querySelectorAll('input[name=rating]').forEach(r => r.checked = false);
+  openModal('reviewModal');
+}
+
+function submitReview() {
+  const alertEl = document.getElementById('reviewAlert');
+  const name = document.getElementById('rev_name').value.trim();
+  const text = document.getElementById('rev_text').value.trim();
+  const ratingEl = document.querySelector('input[name=rating]:checked');
+
+  if (!name || !text || !ratingEl) {
+    alertEl.innerHTML = '<div class="alert alert-error">Please fill in all fields and choose a rating.</div>';
+    return;
+  }
+
+  const reviews = getReviews();
+  reviews.push({
+    id: 'r' + Date.now(),
+    clientId: currentProfileId,
+    name, rating: parseInt(ratingEl.value), text,
+    date: new Date().toISOString().split('T')[0]
+  });
+  setReviews(reviews);
+  closeModal('reviewModal');
+  showToast('Thank you for your review!');
+  if (currentPage === 'profile') viewProfile(currentProfileId);
+}
+
+// ============================================================
+// CLIENT DASHBOARD
+// ============================================================
+function getCurrentClient() {
+  const session = getSession();
+  if (!session || session.type !== 'client') return null;
+  return getClients().find(c => c.id === session.id) || null;
+}
+
+function renderClientDashboard() {
+  const client = getCurrentClient();
+  if (!client) { showPage('landing'); return; }
+
+  document.getElementById('clientDashName').textContent = client.bizName;
+
+  // Stats
+  const reviews = getReviews().filter(r => r.clientId === client.id);
+  const avg = avgRating(client.id);
+  document.getElementById('clientStats').innerHTML = `
+    <div class="stat-card"><div class="stat-value">${reviews.length}</div><div class="stat-label">Total Reviews</div></div>
+    <div class="stat-card"><div class="stat-value">${avg > 0 ? avg.toFixed(1) : '—'}</div><div class="stat-label">Average Rating</div></div>
+    <div class="stat-card"><div class="stat-value">${client.photos ? client.photos.length : 0}</div><div class="stat-label">Photos Uploaded</div></div>
+  `;
+
+  // Status
+  document.getElementById('clientStatusInfo').innerHTML = `
+    <div class="flex gap-1 items-center mb-2">
+      <span>Account Status:</span> <span class="badge badge-${client.status === 'approved' ? 'approved' : 'pending'}">${client.status.charAt(0).toUpperCase() + client.status.slice(1)}</span>
+    </div>
+    <p class="text-muted">Category: <strong>${client.category}</strong></p>
+    <p class="text-muted mt-1">Member since: <strong>${client.joinDate}</strong></p>
+  `;
+
+  renderEditProfileForm(client);
+  renderPhotoManager(client);
+  renderClientReviews(client.id);
+}
+
+function renderEditProfileForm(client) {
+  document.getElementById('editProfileForm').innerHTML = `
+    <div class="form-group">
+      <label>Business Name</label>
+      <input type="text" id="ep_bizName" value="${client.bizName}">
+    </div>
+    <div class="form-group">
+      <label>About Your Business</label>
+      <textarea id="ep_about" rows="4">${client.about || ''}</textarea>
+    </div>
+    <div class="form-group">
+      <label>Services Offered (comma-separated)</label>
+      <input type="text" id="ep_services" value="${client.services || ''}" placeholder="e.g. Cleaning, Ironing, Laundry">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="ep_phone" value="${client.phone}">
+      </div>
+      <div class="form-group">
+        <label>Business Address</label>
+        <input type="text" id="ep_address" value="${client.address}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Profile Picture (URL or upload)</label>
+      <input type="text" id="ep_pic" value="${client.profilePic || ''}" placeholder="Paste an image URL, or use the upload button below">
+    </div>
+    <div class="form-group">
+      <label>Upload Profile Picture</label>
+      <div class="upload-area" onclick="document.getElementById('ep_pic_file').click()">
+        📷 Click to upload a profile photo (JPG, PNG)
+        <input type="file" id="ep_pic_file" accept="image/*" onchange="handleProfilePicUpload(this)">
+      </div>
+    </div>
+    <div id="ep_alert"></div>
+    <button class="btn btn-primary" onclick="saveProfileEdits()">Save Changes</button>
+  `;
+}
+
+function handleProfilePicUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('ep_pic').value = e.target.result;
+    showToast('Profile picture loaded. Click Save Changes to apply.');
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveProfileEdits() {
+  const client = getCurrentClient();
+  if (!client) return;
+  const clients = getClients();
+  const idx = clients.findIndex(c => c.id === client.id);
+  if (idx < 0) return;
+
+  clients[idx].bizName   = document.getElementById('ep_bizName').value.trim() || clients[idx].bizName;
+  clients[idx].about     = document.getElementById('ep_about').value.trim();
+  clients[idx].services  = document.getElementById('ep_services').value.trim();
+  clients[idx].phone     = document.getElementById('ep_phone').value.trim();
+  clients[idx].address   = document.getElementById('ep_address').value.trim();
+  clients[idx].profilePic = document.getElementById('ep_pic').value.trim();
+
+  setClients(clients);
+  showToast('Profile updated successfully!');
+  document.getElementById('ep_alert').innerHTML = '<div class="alert alert-success">Changes saved!</div>';
+  renderClientDashboard();
+}
+
+function renderPhotoManager(client) {
+  const photos = client.photos || [];
+  const previewsHtml = photos.length
+    ? `<div class="img-preview-grid">${photos.map((p, i) =>
+        `<div class="img-preview-wrap">
+          <img src="${p}" alt="Photo ${i+1}">
+          <button class="img-preview-del" onclick="deletePhoto(${i})" title="Delete">✕</button>
+        </div>`).join('')}
+      </div>`
+    : '<p class="text-muted" style="margin-bottom:1rem;">No photos uploaded yet.</p>';
+
+  document.getElementById('photoManager').innerHTML = `
+    ${previewsHtml}
+    <div style="margin-top: 1rem;">
+      <div class="upload-area" onclick="document.getElementById('photoUploadInput').click()">
+        📸 Click to add photos (JPG, PNG — max 3MB each)
+        <input type="file" id="photoUploadInput" accept="image/*" multiple onchange="handlePhotoUpload(this)">
+      </div>
+    </div>
+    <div id="photoUploadStatus" class="mt-1"></div>
+  `;
+}
+
+function handlePhotoUpload(input) {
+  const files = Array.from(input.files);
+  let loaded = 0;
+  const client = getCurrentClient();
+  if (!client) return;
+  const clients = getClients();
+  const idx = clients.findIndex(c => c.id === client.id);
+
+  files.forEach(file => {
+    if (file.size > 3 * 1024 * 1024) { showToast('Photo too large (max 3MB): ' + file.name); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      clients[idx].photos = clients[idx].photos || [];
+      clients[idx].photos.push(e.target.result);
+      setClients(clients);
+      loaded++;
+      if (loaded === files.length) {
+        showToast(`${loaded} photo(s) added!`);
+        renderPhotoManager(clients[idx]);
+        renderClientDashboard();
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function deletePhoto(photoIdx) {
+  const client = getCurrentClient();
+  if (!client) return;
+  if (!confirm('Delete this photo?')) return;
+  const clients = getClients();
+  const idx = clients.findIndex(c => c.id === client.id);
+  clients[idx].photos.splice(photoIdx, 1);
+  setClients(clients);
+  renderPhotoManager(clients[idx]);
+  showToast('Photo deleted.');
+}
+
+function renderClientReviews(clientId) {
+  const reviews = getReviews().filter(r => r.clientId === clientId);
+  const el = document.getElementById('clientReviewsList');
+  if (!reviews.length) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">⭐</div><p>No reviews yet. Share your profile to get started!</p></div>';
+    return;
+  }
+  el.innerHTML = reviews.map(r => `
+    <div class="profile-section">
+      <div class="review-header">
+        <div>
+          <div class="review-name">${r.name}</div>
+          ${renderStars(r.rating)}
+        </div>
+        <div class="review-date">${r.date}</div>
+      </div>
+      <div class="review-text mt-1">${r.text}</div>
+    </div>`).join('');
+}
+
+function viewOwnProfile() {
+  const client = getCurrentClient();
+  if (client) viewProfile(client.id);
+}
+
+function switchClientTab(tab, btn) {
+  document.querySelectorAll('.dash-section[id^=clientTab]').forEach(s => s.classList.remove('active'));
+  document.getElementById('clientTab-' + tab).classList.add('active');
+  document.querySelectorAll('.dash-sidebar .dash-nav-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ============================================================
+// ADMIN DASHBOARD
+// ============================================================
+function renderAdminDashboard() {
+  const clients = getClients();
+  const pending  = clients.filter(c => c.status === 'pending');
+  const approved = clients.filter(c => c.status === 'approved');
+  const reviews  = getReviews();
+
+  // Badge
+  const badge = document.getElementById('pendingBadge');
+  badge.textContent = pending.length || '';
+
+  // Stats
+  document.getElementById('adminStats').innerHTML = `
+    <div class="stat-card"><div class="stat-value">${approved.length}</div><div class="stat-label">Active Businesses</div></div>
+    <div class="stat-card"><div class="stat-value">${pending.length}</div><div class="stat-label">Pending Approval</div></div>
+    <div class="stat-card"><div class="stat-value">${clients.length}</div><div class="stat-label">Total Applications</div></div>
+    <div class="stat-card"><div class="stat-value">${reviews.length}</div><div class="stat-label">Total Reviews</div></div>
+  `;
+
+  // Pending
+  if (!pending.length) {
+    document.getElementById('pendingList').innerHTML = '<div class="empty-state"><div class="empty-state-icon">✅</div><p>No pending applications at this time.</p></div>';
+  } else {
+    document.getElementById('pendingList').innerHTML = `
+    <div class="data-table">
+      <table>
+        <thead><tr><th>Applicant</th><th>Business</th><th>Category</th><th>Applied</th><th>Doc</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${pending.map(c => `
+          <tr>
+            <td><div style="font-weight:500;">${c.name}</div><div style="font-size:0.78rem; color:var(--brand-gray);">${c.email} | ${c.phone}</div></td>
+            <td>${c.bizName}</td>
+            <td><span class="badge badge-rust">${c.category}</span></td>
+            <td>${c.joinDate}</td>
+            <td>${c.regDoc ? `<a href="${c.regDoc.data}" download="${c.regDoc.name}" style="color: var(--brand-rust); font-size:0.82rem; text-decoration:none;">📄 View</a>` : '<span class="text-muted">None</span>'}</td>
+            <td>
+              <button class="btn btn-green btn-sm" onclick="approveClient('${c.id}')">✓ Approve</button>
+              <button class="btn btn-sm" style="background: #c0392b; color:white; margin-left:4px;" onclick="rejectClient('${c.id}')">✗ Reject</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }
+
+  // All clients
+  if (!approved.length) {
+    document.getElementById('clientsList').innerHTML = '<div class="empty-state"><div class="empty-state-icon">👥</div><p>No approved clients yet.</p></div>';
+  } else {
+    document.getElementById('clientsList').innerHTML = `
+    <div class="data-table">
+      <table>
+        <thead><tr><th>Business</th><th>Owner</th><th>Category</th><th>Reviews</th><th>Rating</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${approved.map(c => `
+          <tr>
+            <td><div style="font-weight:500;">${c.bizName}</div><div style="font-size:0.78rem; color:var(--brand-gray);">${c.address}</div></td>
+            <td>${c.name}<div style="font-size:0.78rem; color:var(--brand-gray);">${c.email}</div></td>
+            <td><span class="badge badge-rust">${c.category}</span></td>
+            <td>${getReviews().filter(r => r.clientId === c.id).length}</td>
+            <td>${avgRating(c.id) > 0 ? avgRating(c.id).toFixed(1) + '/5' : '—'}</td>
+            <td>
+              <button class="btn btn-outline btn-sm" onclick="viewProfile('${c.id}')">View</button>
+              <button class="btn btn-sm" style="background: #c0392b; color:white; margin-left:4px;" onclick="suspendClient('${c.id}')">Suspend</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }
+
+  // Reviews
+  const allReviews = getReviews();
+  if (!allReviews.length) {
+    document.getElementById('adminReviewsList').innerHTML = '<div class="empty-state"><div class="empty-state-icon">⭐</div><p>No reviews yet.</p></div>';
+  } else {
+    document.getElementById('adminReviewsList').innerHTML = `
+    <div class="data-table">
+      <table>
+        <thead><tr><th>Reviewer</th><th>Business</th><th>Rating</th><th>Review</th><th>Date</th><th>Actions</th></tr></thead>
+        <tbody>
+          ${allReviews.map(r => {
+            const biz = getClients().find(c => c.id === r.clientId);
+            return `<tr>
+              <td>${r.name}</td>
+              <td>${biz ? biz.bizName : 'Unknown'}</td>
+              <td>${renderStars(r.rating)}</td>
+              <td style="max-width: 250px;">${r.text.slice(0, 80)}${r.text.length > 80 ? '…' : ''}</td>
+              <td>${r.date}</td>
+              <td><button class="btn btn-sm" style="background: #c0392b; color:white;" onclick="deleteReview('${r.id}')">Delete</button></td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }
+}
+
+function approveClient(id) {
+  const clients = getClients();
+  const idx = clients.findIndex(c => c.id === id);
+  if (idx < 0) return;
+  clients[idx].status = 'approved';
+  setClients(clients);
+  showToast('Client approved! Their profile is now live.');
+  renderAdminDashboard();
+}
+
+function rejectClient(id) {
+  if (!confirm('Reject this application? This cannot be undone.')) return;
+  const clients = getClients();
+  const idx = clients.findIndex(c => c.id === id);
+  if (idx < 0) return;
+  clients[idx].status = 'rejected';
+  setClients(clients);
+  showToast('Application rejected.');
+  renderAdminDashboard();
+}
+
+function suspendClient(id) {
+  if (!confirm('Suspend this client? They will not be able to log in until reactivated.')) return;
+  const clients = getClients();
+  const idx = clients.findIndex(c => c.id === id);
+  if (idx < 0) return;
+  clients[idx].status = 'suspended';
+  setClients(clients);
+  showToast('Client suspended.');
+  renderAdminDashboard();
+}
+
+function deleteReview(id) {
+  if (!confirm('Permanently delete this review?')) return;
+  const reviews = getReviews().filter(r => r.id !== id);
+  setReviews(reviews);
+  showToast('Review deleted.');
+  renderAdminDashboard();
+}
+
+function switchAdminTab(tab, btn) {
+  document.querySelectorAll('.dash-section[id^=adminTab]').forEach(s => s.classList.remove('active'));
+  document.getElementById('adminTab-' + tab).classList.add('active');
+  document.querySelectorAll('.dash-sidebar .dash-nav-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  seedDemoData();
+  updateNavBtn();
+
+  // Restore session page
+  const session = getSession();
+  if (session) {
+    if (session.type === 'admin') showPage('admin-dashboard');
+    else if (session.type === 'client') showPage('client-dashboard');
+  }
+
+  updateStatsBanner();
+}
+
+init();
+</script>
+</body>
+</html>
